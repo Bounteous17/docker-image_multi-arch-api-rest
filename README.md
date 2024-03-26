@@ -1,0 +1,1 @@
+# docker-image_multi-arch-api-rest
