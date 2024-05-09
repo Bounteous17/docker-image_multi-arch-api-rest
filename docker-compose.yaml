@@ -1,0 +1,12 @@
+services:
+  postgres:
+    image: postgres:15.6-alpine3.19
+    container_name: multi-arch-api-rest_postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    tmpfs: /var/lib/postgresql/data

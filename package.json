@@ -4,11 +4,13 @@
   "description": "Docker image simple API REST supporting __multiple architectures__ like `amd64` and `arm64`",
   "main": "index.js",
   "scripts": {
+    "start": "node --env-file=.env index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "pg": "^8.11.5"
   }
 }
