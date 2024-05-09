@@ -11,10 +11,15 @@ let pgClient;
 
 if (connectPSQL) {
   console.info("Trying to connect PSQL server ...");
-  pgClient = new pg.Client();
-  pgClient.connect().catch((error) => {
-    console.error(error);
+  pgClient = new pg.Client({
+    ssl: { rejectUnauthorized: false },
   });
+  pgClient
+    .connect()
+    .then(() => console.log("Suvccessfully connected PSQL server"))
+    .catch((error) => {
+      console.error(error);
+    });
 } else {
   console.info("Ignoring PSQL server connection attempt");
 }
@@ -25,6 +30,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/psql", async (req, res) => {
+  if (!connectPSQL) {
+    return res.json({ connected: false });
+  }
   res.json({ connected: pgClient._connected });
 });
 
